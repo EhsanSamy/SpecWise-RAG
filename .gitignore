@@ -1,0 +1,54 @@
+# ── Python ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+
+# ── uv / virtual environments ──────────────────────────
+# Matches .venv/ inside backend/, frontend/, notebooks/, and root
+.venv/
+.python-version
+
+
+# ── Environment variables / secrets ────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Jupyter ─────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Vector store / data (large, regenerable from notebook) ─
+backend/data/vector_store/
+*.sqlite3
+*.chroma/
+
+# Keep a placeholder so the folder exists after clone
+!backend/data/vector_store/.gitkeep
+
+# ── Raw document corpus (large — document how to obtain in README) ─
+data/raw_docs/
+*.pdf
+!docs/**/*.pdf
+
+# ── Logs ────────────────────────────────────────────────
+*.log
+logs/
+
+# ── OS cruft ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editor / IDE ────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Testing / coverage ──────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Docker ──────────────────────────────────────────────
+*.pid
