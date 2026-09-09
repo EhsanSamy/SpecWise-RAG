@@ -11,6 +11,7 @@ dependencies = [
     "ollama>=0.6.2",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
+    "pypdf>=6.18.0",
     "python-multipart>=0.0.32",
     "sentence-transformers>=6.0.1",
     "uvicorn[standard]>=0.52.4",
