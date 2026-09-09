@@ -16,6 +16,10 @@ __pycache__/
 .env.*
 !.env.example
 
+# ── Docs ─────────────────────────────────────────────
+docs/
+!.gitkeep
+
 # ── Jupyter ─────────────────────────────────────────────
 .ipynb_checkpoints/
 
