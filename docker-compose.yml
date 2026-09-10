@@ -1,0 +1,39 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    # No GPU config here — add a `deploy.resources.reservations.devices` block
+    # if you have an NVIDIA GPU + nvidia-container-toolkit available locally.
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Bind-mounts the notebook's persisted vector store and the project
+      # registry from the host, so data survives container rebuilds and is
+      # the same data the notebook wrote to `backend/data/vector_store/`.
+      - ./backend/data:/app/data
+    environment:
+      # Overrides the backend's localhost:11434 default — inside the compose
+      # network, Ollama is reachable at its service name, not localhost.
+      - OLLAMA_HOST=http://ollama:11434
+    depends_on:
+      - ollama
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    environment:
+      # Overrides the frontend's localhost:8000 default the same way — inside
+      # the compose network, the backend is reachable at its service name.
+      - API_BASE_URL=http://backend:8000
+    depends_on:
+      - backend
+
+volumes:
+  ollama_models:
